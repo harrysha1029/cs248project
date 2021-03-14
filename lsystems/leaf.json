@@ -1,0 +1,14 @@
+{
+  "symbols": ["a", "b", "x", "y"],
+  "start": "a",
+  "production_rules": {
+    "F": ">F<"
+    , "a": "F[+x]Fb"
+    , "b" : "F[-y]Fa"
+    , "x" : "a"
+    , "y" : "b"
+  },
+  "turning_angle": 45
+  , "length_scale_factor" : 1.36
+  , "length" : 1
+}

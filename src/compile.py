@@ -17,7 +17,7 @@ def check_types(params):
         , ("production_rules", dict)
         , ("pos" , tuple)
         , ("angle" , numbers.Number)
-        , ("turning_angle_increment" , numbers.Number)
+        , ("turning_angle" , numbers.Number)
         , ("length_scale_factor" , numbers.Number)
         , ("swap_plus_minus" , bool)
     ]
@@ -51,8 +51,13 @@ def check_valid(params):
 
 
 def advance_lsystem_string(lsystem, string):
-    # TODO
-    pass
+    new_string = ""
+    for char in string:
+        if char in lsystem.production_rules.keys():
+            new_string += lsystem.production_rules[char]
+        else:
+            new_string += char
+    return new_string
 
 
 def compute_lsystem_string(lsystem, n):
@@ -61,17 +66,17 @@ def compute_lsystem_string(lsystem, n):
         s = advance_lsystem_string(lsystem, s)
     return s
 
-
-N = 5  # TODO make n a variable
-
 def compile(path):
+
     lsystem_params = load_json(path)
     check_valid(lsystem_params)
-    lsystem = L.LSystem(**lsystem_params)
 
-    string_to_draw = compute_lsystem_string(lsystem, N)
-    lsystem.turtle.draw(string_to_draw)
+    for N in range(1,10):
+        lsystem = L.LSystem(**lsystem_params)
+        string_to_draw = compute_lsystem_string(lsystem, N)
 
-    out_path = "figs/" + Path(path).stem + ".svg"
+        lsystem.turtle.draw(string_to_draw)
 
-    lsystem.save(out_path)
+        # out_path = "figs/" + Path(path).stem + f"_{N}.svg"
+        out_path = "figs/" + Path(path).stem + f"_{N}.png"
+        lsystem.save(out_path)

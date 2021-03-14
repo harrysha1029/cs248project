@@ -1,0 +1,11 @@
+{
+  "symbols": [ "F","X" ],
+  "start": "FX",
+  "production_rules": {
+    "X": ">[-FX]+FX"
+  },
+  "turning_angle": 40,
+  "angle": 90,
+  "length": 40,
+  "length_scale_factor": 0.7
+}
