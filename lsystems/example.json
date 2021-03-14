@@ -1,0 +1,7 @@
+{
+    "symbols": ["A", "B"]
+    , "start": "A"
+    , "production_rules": {
+        "A": "AB", "B": "A"
+    }
+}
