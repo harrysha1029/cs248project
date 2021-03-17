@@ -7,10 +7,11 @@ class TurtleDrawing:
         self,
         pos=(0, 0),
         length=1,
-        angle=0,
+        angle=90,
         turning_angle=0,
         turning_angle_increment=0,
         length_scale_factor=1,
+        transparent=False,
     ):
         self.pos = pos
         self.angle = angle
@@ -20,6 +21,10 @@ class TurtleDrawing:
         self.length_scale_factor = length_scale_factor
         self.stack = []
         self.drawing = draw.Drawing(1000, 1000)
+        if not transparent:
+            self.drawing.append(
+                draw.Rectangle(0,0,1000,1000,fill='white')
+            )
         self.lines = []
 
     def draw(self, string):
@@ -53,8 +58,10 @@ class TurtleDrawing:
 
 
     def save(self, path):
-        # self.drawing.saveSvg(path)
-        self.drawing.savePng(path)
+        if 'svg' in path:
+            self.drawing.saveSvg(path)
+        else:
+            self.drawing.savePng(path)
 
     # ===== Helpers for drawing =======
     # http://paulbourke.net/fractals/lsys/
@@ -69,7 +76,6 @@ class TurtleDrawing:
         # want to calculate self.length units in the self.angle direction
         # move in x direction: length * cos(angle)
         # move in y direction: length * sin(angle)
-        print("Move")
 
 
     def draw_and_move(self):

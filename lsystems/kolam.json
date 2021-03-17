@@ -1,0 +1,11 @@
+{
+  "symbols": ["A", "B", "C", "D"],
+  "start": "(-D--D)",
+  "production_rules": {
+    "A" : "F++FFFF--F--FFFF++F++FFFF--F"
+    , "B" : "F--FFFF++F++FFFF--F--FFFF++F"
+    , "C" : "BFA--BFA"
+    , "D" : "CFC--CFC"
+  },
+  "turning_angle": 45
+}

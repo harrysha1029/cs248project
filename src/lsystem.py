@@ -8,16 +8,17 @@ class LSystem:
         production_rules,
         pos=(500,500),
         length=10,
-        angle=0,
+        angle=90,
         turning_angle=0,
         turning_angle_increment=0,
         length_scale_factor=1,
+        transparent=False,
     ):
         self.symbols = symbols
         self.start = start
         self.production_rules = production_rules
         self.turtle = TurtleDrawing(
-            pos, length, angle, turning_angle, turning_angle_increment, length_scale_factor
+            pos, length, angle, turning_angle, turning_angle_increment, length_scale_factor, transparent
         )
 
     def __repr__(self):

@@ -4,6 +4,10 @@ from src.turtle import CONSTS, CHAR_TO_DRAW_FN
 import json
 import numbers
 
+import imageio
+
+
+
 from pathlib import Path
 
 def load_json(path):
@@ -66,17 +70,35 @@ def compute_lsystem_string(lsystem, n):
         s = advance_lsystem_string(lsystem, s)
     return s
 
-def compile(path):
-
+def compile(path, n, transparent=False, fname_no_ext=None):
     lsystem_params = load_json(path)
     check_valid(lsystem_params)
 
-    for N in range(1,10):
-        lsystem = L.LSystem(**lsystem_params)
-        string_to_draw = compute_lsystem_string(lsystem, N)
+    lsystem = L.LSystem(**lsystem_params, transparent=transparent)
+    string_to_draw = compute_lsystem_string(lsystem, n)
 
-        lsystem.turtle.draw(string_to_draw)
+    lsystem.turtle.draw(string_to_draw)
 
-        # out_path = "figs/" + Path(path).stem + f"_{N}.svg"
-        out_path = "figs/" + Path(path).stem + f"_{N}.png"
-        lsystem.save(out_path)
+    if fname_no_ext is None:
+        name = "figs/"+ Path(path).stem
+    else:
+        name = fname_no_ext
+        
+    out_path = name + f"_{n}.svg"
+    lsystem.save(out_path)
+    out_path = name + f"_{n}.png"
+    lsystem.save(out_path)
+    return out_path
+
+def compile_range(path, start, end, transparent=False):
+    filenames = [compile(path, n, transparent) for n in range(start, end)]
+    images = []
+    for filename in filenames:
+        images.append(imageio.imread(filename))
+    print(len(images))
+
+    imageio.mimsave('gifs/' + Path(path).stem + '.gif', images, duration=0.4)
+
+
+
+

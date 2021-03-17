@@ -1,8 +1,8 @@
 {
   "symbols": [ "F" ],
-  "start": "F",
+  "start": "FF+FF+FF+FF",
   "production_rules": {
-    "F": "F-F+F+F-F"
+    "F": "F+F-F-F+F"
   },
   "turning_angle": 90
 }

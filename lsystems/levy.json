@@ -1,0 +1,9 @@
+{
+  "symbols": [],
+  "start": "F",
+  "production_rules": {
+    "F" : "-F++F-"
+  },
+  "turning_angle": 45
+  , "angle": 0
+}

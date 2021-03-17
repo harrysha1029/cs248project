@@ -1,0 +1,10 @@
+{
+  "symbols": ["X", "Y"],
+  "start": "X+X+X+X+X+X+X+X",
+  "production_rules": {
+    "X" : "X+YF++YF-FX--FXFX-YF+X"
+    , "Y" : "-FX+YFYF++YF+FX--FX-YF"
+  },
+  "turning_angle": 45
+}
+

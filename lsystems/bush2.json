@@ -1,7 +1,6 @@
 {
   "symbols": [ "F" ],
   "start": "F",
-  "angle": 90,
   "production_rules": {
     "F": "FF+[+F-F-F]-[-F+F+F]"
   },
