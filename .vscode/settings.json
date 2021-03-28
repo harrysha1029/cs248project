@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "/home/harry/venvs/cs248project/bin/python",
+    "python.pythonPath": "/Users/harry/venvs/cs248/bin/python",
     "python.linting.mypyEnabled": false,
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": true,
