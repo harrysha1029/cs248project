@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L-Systems</title>
+</head>
+
+<body>
+
+    <center>
+        <h1>L-Systems</h1>
+        A L-System compiler written for CS 248: Interactive Computer Graphics, by Harry Sha and Ashley Nguyen. All of the below L-Systems are taken from Paul Bourke's <a href="http://paulbourke.net/fractals/lsys/">L-System User Notes</a> . Learn more about L-Systems <a href="https://en.wikipedia.org/wiki/L-system">here</a>.
+
+        <br>
+
+        Our compiler is written in Python and takes a json specification of a L-System and generates an SVG. 
+
+        <br>
+        <hr>
+
+
+        sierpinskiArrowhead<br><pre><code>{
+  "symbols": ["X", "Y"],
+  "start": "YF",
+  "production_rules": {
+    "X" : "YF+XF+Y"
+    , "Y" : "XF-YF-X"
+  },
+  "turning_angle": 60
+}</code></pre><br>
+ <img src="gifs/sierpinskiArrowhead.gif">
+<br><br><hr><br><br>kolam<br><pre><code>{
+  "symbols": ["A", "B", "C", "D"],
+  "start": "(-D--D)",
+  "production_rules": {
+    "A" : "F++FFFF--F--FFFF++F++FFFF--F"
+    , "B" : "F--FFFF++F++FFFF--F--FFFF++F"
+    , "C" : "BFA--BFA"
+    , "D" : "CFC--CFC"
+  },
+  "turning_angle": 45
+}</code></pre><br>
+ <img src="gifs/kolam.gif">
+<br><br><hr><br><br>crystal<br><pre><code>{
+  "symbols": [ "F" ],
+  "start": "F+F+F+F",
+  "production_rules": {
+    "F": "FF+F++F+F"
+  },
+  "turning_angle": 90
+}</code></pre><br>
+ <img src="gifs/crystal.gif">
+<br><br><hr><br><br>rings<br><pre><code>
+{
+  "symbols": [ "F" ],
+  "start": "F+F+F+F",
+  "production_rules": {
+    "F": "FF+F+F+F+F+F-F"
+  },
+  "turning_angle": 90
+}</code></pre><br>
+ <img src="gifs/rings.gif">
+<br><br><hr><br><br>board<br><pre><code>{
+  "symbols": [],
+  "start": "F+F+F+F",
+  "production_rules": {
+    "F" : "FF+F+F+F+FF"
+  },
+  "turning_angle": 90
+}
+</code></pre><br>
+ <img src="gifs/board.gif">
+<br><br><hr><br><br>quadraticKochIsland<br><pre><code>{
+  "symbols": ["X", "Y"],
+  "start": "X+X+X+X+X+X+X+X",
+  "production_rules": {
+    "X" : "X+YF++YF-FX--FXFX-YF+X"
+    , "Y" : "-FX+YFYF++YF+FX--FX-YF"
+  },
+  "turning_angle": 45
+}
+
+</code></pre><br>
+ <img src="gifs/quadraticKochIsland.gif">
+<br><br><hr><br><br>tiles<br><pre><code>{
+  "symbols": [ "F" ],
+  "start": "F+F+F+F",
+  "production_rules": {
+    "F": "F+F-F-FF+F+F-F"
+  },
+  "turning_angle": 90
+}</code></pre><br>
+ <img src="gifs/tiles.gif">
+<br><br><hr><br><br>pentaplexity<br><pre><code>{
+  "symbols": [],
+  "start": "F++F++F++F++F",
+  "production_rules": {
+    "F" : "F++F++F|F-F++F"
+  },
+  "turning_angle": 36
+  , "angle": 36
+}
+</code></pre><br>
+ <img src="gifs/pentaplexity.gif">
+<br><br><hr><br><br>leaf<br><pre><code>{
+  "symbols": ["a", "b", "x", "y"],
+  "start": "a",
+  "production_rules": {
+    "F": ">F<"
+    , "a": "F[+x]Fb"
+    , "b" : "F[-y]Fa"
+    , "x" : "a"
+    , "y" : "b"
+  },
+  "turning_angle": 45
+  , "length_scale_factor" : 1.36
+}</code></pre><br>
+ <img src="gifs/leaf.gif">
+<br><br><hr><br><br>bush4<br><pre><code>{
+  "symbols": [ "V", "W", "X", "Y", "Z" ],
+  "start": "VZFFF",
+  "production_rules": {
+    "V": "[+++W][---W]YV",
+    "W": "+X[-W]Z",
+    "X": "-W[+X]Z",
+    "Y": "YZ",
+    "Z": "[-FFF][+FFF]F"
+  },
+  "turning_angle": 20
+}</code></pre><br>
+ <img src="gifs/bush4.gif">
+<br><br><hr><br><br>hilbert<br><pre><code>{
+  "symbols": ["X", "Y"],
+  "start": "X",
+  "production_rules": {
+    "X" : "-YF+XFX+FY-"
+    , "Y" : "+XF-YFY-FX+"
+  },
+  "turning_angle": 90
+}
+</code></pre><br>
+ <img src="gifs/hilbert.gif">
+<br><br><hr><br><br>levy<br><pre><code>{
+  "symbols": [],
+  "start": "F",
+  "production_rules": {
+    "F" : "-F++F-"
+  },
+  "turning_angle": 45
+  , "angle": 0
+}
+</code></pre><br>
+ <img src="gifs/levy.gif">
+<br><br><hr><br><br>bush5<br><pre><code>{
+  "symbols": [ "F","X" ],
+  "start": "FX",
+  "production_rules": {
+    "X": ">[-FX]+FX"
+  },
+  "turning_angle": 40,
+  "length": 40,
+  "length_scale_factor": 0.7
+}</code></pre><br>
+ <img src="gifs/bush5.gif">
+<br><br><hr><br><br>vonKochSnowflake<br><pre><code>
+{
+  "symbols": [ "F" ],
+  "start": "F++F++F",
+  "production_rules": {
+    "F": "F-F++F-F"
+  },
+  "turning_angle": 60
+}</code></pre><br>
+ <img src="gifs/vonKochSnowflake.gif">
+<br><br><hr><br><br>bush1<br><pre><code>{
+  "symbols": ["X","Y"],
+  "start": "Y",
+  "production_rules": {
+    "X": "X[-FFF][+FFF]FX",
+    "Y": "YFX[+Y][-Y]"
+  },
+  "turning_angle": 25.7
+}</code></pre><br>
+ <img src="gifs/bush1.gif">
+<br><br><hr><br><br>bush2<br><pre><code>{
+  "symbols": [ "F" ],
+  "start": "F",
+  "production_rules": {
+    "F": "FF+[+F-F-F]-[-F+F+F]"
+  },
+  "turning_angle": 22.5
+}</code></pre><br>
+ <img src="gifs/bush2.gif">
+<br><br><hr><br><br>bush3<br><pre><code>{
+  "symbols": [ "F" ],
+  "start": "F",
+  "production_rules": {
+    "F": "F[+FF][-FF]F[-F][+F]F"
+  },
+  "turning_angle": 35
+}</code></pre><br>
+ <img src="gifs/bush3.gif">
+<br><br><hr><br><br>quadraticSnowflake<br><pre><code>{
+  "symbols": [ "F" ],
+  "start": "FF+FF+FF+FF",
+  "production_rules": {
+    "F": "F+F-F-F+F"
+  },
+  "turning_angle": 90
+}</code></pre><br>
+ <img src="gifs/quadraticSnowflake.gif">
+<br><br><hr><br><br>squareSierpinski<br><pre><code>{
+  "symbols": ["X"],
+  "start": "F+XF+F+XF",
+  "production_rules": {
+    "X" : "XF-F+F-XF+F+XF-F+F-X"
+  },
+  "turning_angle": 90
+}
+
+</code></pre><br>
+ <img src="gifs/squareSierpinski.gif">
+<br><br><hr><br><br>weeds<br><pre><code>{
+  "symbols": ["X", "Y"],
+  "start": "F",
+  "production_rules": {
+    "F" : "FF-[XY]+[XY]"
+    , "X" : "+FY"
+    , "Y" : "-FX"
+  },
+  "turning_angle": 22.5
+}
+</code></pre><br>
+ <img src="gifs/weeds.gif">
+<br><br><hr><br><br>dragon<br><pre><code>{
+  "symbols": ["X", "Y"],
+  "start": "FX",
+  "production_rules": {
+    "X" : "X+YF+"
+    , "Y" : "-FX-Y"
+  },
+  "turning_angle": 90
+}
+</code></pre><br>
+ <img src="gifs/dragon.gif">
+<br><br><hr><br><br>quadraticGlosper<br><pre><code>{
+  "symbols": ["X", "Y"],
+  "start": "-YF",
+  "production_rules": {
+    "X" : "XFX-YF-YF+FX+FX-YF-YFFX+YF+FXFXYF-FX+YF+FXFX+YF-FXYF-YF-FX+FX+YFYF-"
+    , "Y" : "+FXFX-YF-YF+FX+FXYF+FX-YFYF-FX-YF+FXYFYF-FX-YFFX+FX+YF-YF-FX+FX+YFY"
+  },
+  "turning_angle": 90
+}</code></pre><br>
+ <img src="gifs/quadraticGlosper.gif">
+<br><br><hr><br><br>hex<br><pre><code>{
+  "symbols": ["X", "Y"],
+  "start": "X",
+  "production_rules": {
+    "X" : "X+YF++YF-FX--FXFX-YF+"
+    , "Y" : "-FX+YFYF++YF+FX--FX-Y"
+  },
+  "turning_angle": 60
+  
+}
+</code></pre><br>
+ <img src="gifs/hex.gif">
+<br><br><hr><br><br>sticks<br><pre><code>{
+  "symbols": ["x"],
+  "start": "x",
+  "production_rules": {
+    "F": "FF"
+    , "x" : "F[+x]F[-x]+x"
+  },
+  "turning_angle": 20
+}
+</code></pre><br>
+ <img src="gifs/sticks.gif">
+<br><br><hr><br><br>triangle<br><pre><code>{
+  "symbols": [ "F" ],
+  "start": "F+F+F",
+  "production_rules": {
+    "F": "F-F+F"
+  },
+  "turning_angle": 120
+}</code></pre><br>
+ <img src="gifs/triangle.gif">
+<br><br><hr><br><br>
+    </center>
+</body>
+</html>
